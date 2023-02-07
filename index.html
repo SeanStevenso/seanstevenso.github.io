@@ -5,7 +5,7 @@
   <title>Valentine's Day</title>
   <style>
     body {
-      background-image: url("https://i.ytimg.com/vi/rtQ9KzIyJcU/maxresdefault.jpg");
+      background-image: url("https://i.ibb.co/ZY7hvYX/heart-background.jpg");
       background-size: cover;
       text-align: center;
       font-family: Arial, sans-serif;
@@ -15,6 +15,9 @@
       margin-top: 50px;
     }
     #fireworks {
+      display: none;
+    }
+    #sad-monkey {
       display: none;
     }
   </style>
@@ -29,13 +32,16 @@
   <div id="fireworks">
     <img src="https://bestanimations.com/media/fireworks2/212323546ba-colorful-fireworks-animated-gif-pic.gif" alt="fireworks">
   </div>
+  <div id="sad-monkey">
+    <img src="https://images.fineartamerica.com/images-medium-large-5/sad-monkey-savannah-gibbs.jpg" alt="sad monkey">
+  </div>
   
   <script>
     function yes() {
       document.getElementById("fireworks").style.display = "block";
     }
     function no() {
-      image: url("https://i.ytimg.com/vi/rtQ9KzIyJcU/maxresdefault.jpg");
+      document.getElementById("sad-monkey").style.display = "block";
     }
   </script>
 </body>
