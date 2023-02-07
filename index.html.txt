@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Valentine's Day</title>
+  <style>
+    body {
+      background-image: url("https://i.ibb.co/ZY7hvYX/heart-background.jpg");
+      background-size: cover;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: white;
+      margin-top: 50px;
+    }
+    #fireworks {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Niamh, will you be my Valentine?</h1>
+  <div>
+    <button onclick="yes()">Yes</button>
+    <button onclick="no()">No</button>
+  </div>
+  <div id="fireworks">
+    <img src="https://i.ibb.co/CJTQgZF/fireworks.gif" alt="fireworks">
+  </div>
+  
+  <script>
+    function yes() {
+      document.getElementById("fireworks").style.display = "block";
+    }
+    function no() {
+      alert("Maybe next time, Niamh!");
+    }
+  </script>
+</body>
+
+</html>
