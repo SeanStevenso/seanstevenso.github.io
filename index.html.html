@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Niamh ❤️ Will You Be My Valentine?</title>
+
 <style>
 body {
     margin:0;
@@ -24,9 +25,7 @@ body {
 
 h1 { font-size:3em; text-shadow:0 0 15px hotpink; }
 
-.buttons {
-    margin-top:20px;
-}
+.buttons { margin-top:20px; }
 
 button {
     padding:15px 30px;
@@ -36,16 +35,8 @@ button {
     cursor:pointer;
 }
 
-#yesBtn {
-    background:hotpink;
-    color:white;
-}
-
-#noBtn {
-    background:#222;
-    color:white;
-    position:absolute;
-}
+#yesBtn { background:hotpink; color:white; }
+#noBtn { background:#222; color:white; position:absolute; }
 
 #meter {
     width:300px;
@@ -99,13 +90,39 @@ button {
 @keyframes fall {
     to { transform: translateY(110vh); }
 }
+
+/* 🔥 FIREWORKS */
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+}
+
+/* Hide YouTube player */
+#ytplayer {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border: 0;
+}
 </style>
 </head>
+
 <body>
 
-<audio autoplay loop>
-    <source src="https://spellingdelicatessenremove.com/dQDsrQgEDB/QcLDRE/TFx0fJSkrL/zUVKj9UaX6TqL3S5_zz/Q3QGUfdcD-ezVd5yBO/hARvlOj1j/atVV24Wq6L_u5mo/PYnuAoS-Al/YyyhekA8nn_mbLa_I/xNL_D6suB25vy7Ot/y7VczvOqCIWH415/J1eWxLDWY/Th9/wxFeG-a75_YRMM/cmn96Kl1/VckzQw7jYWdmI4W/RjPskJFZb76Jtsni8ivX/77u6YwIjbi/RKAkHnYPeCC6NFS7/DJGibE2Q8Q0/rizCC0AksTI/KlTVODrGoL4/XRQdLQMhtRucUvES/uxClqt6jH4/1fmH5Ja05mlgE6/RExjigGzKm/_tr9O5ORAF/8kr7zVivQbTVE31/PQzqSmYpEuiN/eqv5is-j/JjNhmbJ/x0OQ==/P8WkgJZcZWBGY9LNKaWSrgcwTRxHxFmlMWYI9qnACwglTG7JMRaKQ5bF0OczyWQtus5nad42IGv" type="audio/mpeg">
-</audio>
+<!-- 🔊 YOUTUBE BACKGROUND MUSIC -->
+<iframe
+    id="ytplayer"
+    src="https://www.youtube.com/embed/8QG7CEuUqMc?autoplay=1&loop=1&playlist=YOUR_YOUTUBE_VIDEO_ID&controls=0&mute=0"
+    allow="autoplay">
+</iframe>
 
 <div class="overlay">
     <h1>Niamh 💖 Will You Be My Valentine?</h1>
@@ -127,10 +144,15 @@ button {
     </div>
 </div>
 
+<!-- 🔥 FIREWORKS -->
+<div id="fireworks" class="fireworks"></div>
+
 <script>
 let noBtn = document.getElementById("noBtn");
 let yesBtn = document.getElementById("yesBtn");
 let fill = document.getElementById("fill");
+let fireworks = document.getElementById("fireworks");
+
 let scale = 1;
 let love = 0;
 
@@ -167,8 +189,12 @@ yesBtn.addEventListener("click", ()=>{
     if(love>100) love=100;
     fill.style.width = love + "%";
     hearts();
+
     if(love === 100){
-        alert("YAY!!! 💕 See u at da rave!");
+        launchFireworks();
+        setTimeout(()=>{
+            alert("YAY!!! 💕 See u at da rave!");
+        },1000);
     }
 });
 
@@ -181,6 +207,11 @@ function hearts(){
         document.body.appendChild(h);
         setTimeout(()=>h.remove(),3000);
     }
+}
+
+function launchFireworks(){
+    fireworks.style.backgroundImage = "url('https://bestanimations.com/media/fireworks/671801409ba-awesome-coloful-fireworks-animated-gif-image-3.gif')";
+    fireworks.style.display = "block";
 }
 
 moveNo();
