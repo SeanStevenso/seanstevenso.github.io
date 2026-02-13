@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Niamh ❤️ Will You Be My Valentine?</title>
+
 <style>
 body {
     margin:0;
     font-family: 'Comic Sans MS', cursive;
-    background:url("https://i.ibb.co/ZY7hvYX/heart-background.jpg") center/cover fixed;
+    background:url("https://i.pinimg.com/originals/ff/22/f2/ff22f2e4df37bfb33815fc844ebe90cf.gif") center/cover fixed;
     text-align:center;
     color:white;
     overflow:hidden;
@@ -24,9 +25,7 @@ body {
 
 h1 { font-size:3em; text-shadow:0 0 15px hotpink; }
 
-.buttons {
-    margin-top:20px;
-}
+.buttons { margin-top:20px; }
 
 button {
     padding:15px 30px;
@@ -36,16 +35,8 @@ button {
     cursor:pointer;
 }
 
-#yesBtn {
-    background:hotpink;
-    color:white;
-}
-
-#noBtn {
-    background:#222;
-    color:white;
-    position:absolute;
-}
+#yesBtn { background:hotpink; color:white; }
+#noBtn { background:#222; color:white; position:absolute; }
 
 #meter {
     width:300px;
@@ -99,13 +90,39 @@ button {
 @keyframes fall {
     to { transform: translateY(110vh); }
 }
+
+/* 🔥 FIREWORKS */
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+}
+
+/* Hide YouTube player */
+#ytplayer {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border: 0;
+}
 </style>
 </head>
+
 <body>
 
-<audio autoplay loop>
-    <source src="YOUR_SONG_LINK_HERE.mp3" type="audio/mpeg">
-</audio>
+<!-- 🔊 YOUTUBE BACKGROUND MUSIC -->
+<iframe
+    id="ytplayer"
+    src="https://www.youtube.com/embed/8QG7CEuUqMc?autoplay=1&loop=1&playlist=YOUR_YOUTUBE_VIDEO_ID&controls=0&mute=0"
+    allow="autoplay">
+</iframe>
 
 <div class="overlay">
     <h1>Niamh 💖 Will You Be My Valentine?</h1>
@@ -120,17 +137,22 @@ button {
     </div>
 
     <div class="carousel">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
+        <img src="https://i.imgur.com/JwpehNa.jpeg">
+        <img src="https://i.imgur.com/B1PBFHq.jpeg">
+        <img src="https://i.imgur.com/yAiHEas.jpeg">
+        <img src="https://i.imgur.com/Md1EUxQ.jpeg">
     </div>
 </div>
+
+<!-- 🔥 FIREWORKS -->
+<div id="fireworks" class="fireworks"></div>
 
 <script>
 let noBtn = document.getElementById("noBtn");
 let yesBtn = document.getElementById("yesBtn");
 let fill = document.getElementById("fill");
+let fireworks = document.getElementById("fireworks");
+
 let scale = 1;
 let love = 0;
 
@@ -167,8 +189,12 @@ yesBtn.addEventListener("click", ()=>{
     if(love>100) love=100;
     fill.style.width = love + "%";
     hearts();
+
     if(love === 100){
-        alert("YAY!!! 💕 You’re officially my Valentine forever!");
+        launchFireworks();
+        setTimeout(()=>{
+            alert("YAY!!! 💕 See u at da rave!");
+        },1000);
     }
 });
 
@@ -181,6 +207,11 @@ function hearts(){
         document.body.appendChild(h);
         setTimeout(()=>h.remove(),3000);
     }
+}
+
+function launchFireworks(){
+    fireworks.style.backgroundImage = "url('https://bestanimations.com/media/fireworks/671801409ba-awesome-coloful-fireworks-animated-gif-image-3.gif')";
+    fireworks.style.display = "block";
 }
 
 moveNo();
