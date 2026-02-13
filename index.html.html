@@ -1,43 +1,190 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Valentine's Day</title>
-  <style>
-    body {
-      background-image: url("https://i.ibb.co/ZY7hvYX/heart-background.jpg");
-      background-size: cover;
-      text-align: center;
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      color: white;
-      margin-top: 50px;
-    }
-    #fireworks {
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Niamh ❤️ Will You Be My Valentine?</title>
+<style>
+body {
+    margin:0;
+    font-family: 'Comic Sans MS', cursive;
+    background:url("https://i.ibb.co/ZY7hvYX/heart-background.jpg") center/cover fixed;
+    text-align:center;
+    color:white;
+    overflow:hidden;
+}
+
+.overlay {
+    backdrop-filter: blur(4px);
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+h1 { font-size:3em; text-shadow:0 0 15px hotpink; }
+
+.buttons {
+    margin-top:20px;
+}
+
+button {
+    padding:15px 30px;
+    font-size:1.3em;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+}
+
+#yesBtn {
+    background:hotpink;
+    color:white;
+}
+
+#noBtn {
+    background:#222;
+    color:white;
+    position:absolute;
+}
+
+#meter {
+    width:300px;
+    height:20px;
+    border:2px solid white;
+    margin-top:20px;
+}
+
+#fill {
+    height:100%;
+    width:0%;
+    background:hotpink;
+}
+
+.popup {
+    position:fixed;
+    background:black;
+    border:2px solid hotpink;
+    padding:15px;
+    animation: pop 0.4s;
+}
+
+@keyframes pop {
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+.carousel {
+    display:flex;
+    gap:10px;
+    margin-top:30px;
+    animation: scroll 15s linear infinite;
+}
+
+.carousel img {
+    width:120px;
+    border-radius:15px;
+}
+
+@keyframes scroll {
+    from{transform:translateX(100vw);}
+    to{transform:translateX(-100vw);}
+}
+
+.confetti {
+    position:fixed;
+    font-size:2em;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh); }
+}
+</style>
 </head>
-
 <body>
-  <h1>Niamh, will you be my Valentine?</h1>
-  <div>
-    <button onclick="yes()">Yes</button>
-    <button onclick="no()">No</button>
-  </div>
-  <div id="fireworks">
-    <img src="https://i.ibb.co/CJTQgZF/fireworks.gif" alt="fireworks">
-  </div>
-  
-  <script>
-    function yes() {
-      document.getElementById("fireworks").style.display = "block";
-    }
-    function no() {
-      alert("Maybe next time, Niamh!");
-    }
-  </script>
-</body>
 
+<audio autoplay loop>
+    <source src="YOUR_SONG_LINK_HERE.mp3" type="audio/mpeg">
+</audio>
+
+<div class="overlay">
+    <h1>Niamh 💖 Will You Be My Valentine?</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">YES 😍</button>
+        <button id="noBtn">No 🙄</button>
+    </div>
+
+    <div id="meter">
+        <div id="fill"></div>
+    </div>
+
+    <div class="carousel">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+    </div>
+</div>
+
+<script>
+let noBtn = document.getElementById("noBtn");
+let yesBtn = document.getElementById("yesBtn");
+let fill = document.getElementById("fill");
+let scale = 1;
+let love = 0;
+
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+function popup() {
+    let p = document.createElement("div");
+    p.className = "popup";
+    p.innerText = "You can’t escape love 😈💖";
+    p.style.left = Math.random()*80 + "vw";
+    p.style.top = Math.random()*80 + "vh";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1200);
+}
+
+noBtn.addEventListener("click", ()=>{
+    scale -= 0.1;
+    noBtn.style.transform = `scale(${scale})`;
+    moveNo();
+    popup();
+    if(scale < 0.4){
+        popup();
+        popup();
+    }
+});
+
+yesBtn.addEventListener("click", ()=>{
+    love += 25;
+    if(love>100) love=100;
+    fill.style.width = love + "%";
+    hearts();
+    if(love === 100){
+        alert("YAY!!! 💕 You’re officially my Valentine forever!");
+    }
+});
+
+function hearts(){
+    for(let i=0;i<10;i++){
+        let h = document.createElement("div");
+        h.className="confetti";
+        h.innerText="💖";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),3000);
+    }
+}
+
+moveNo();
+</script>
+
+</body>
 </html>
